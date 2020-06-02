@@ -7,40 +7,60 @@ class NewsCrawler():
 
 # ----------------------------------------------------------------------------------------------
     # 蘋果新聞
-    def apple_news(self):
-        target_url = 'https://tw.appledaily.com/new/realtime'
-        print('Start parsing appleNews....')
-        rs = requests.session()
-        res = rs.get(target_url, verify=False)
-        soup = BeautifulSoup(res.text, 'html.parser')
-        content = ""
-        for index, data in enumerate(soup.select('.rtddt a'), 0):
-            if index == 5:
-                return content
-            link = data['href']
-            content += '{}\n\n'.format(link)
-        return content
+    # Need to fix
+    def Apple_news(self):
+        Link_List = []
+        Title_List = []
+        Total=''
+
+        try:
+
+            target_url = 'https://tw.appledaily.com/new/realtime'
+            rs = requests.session()
+            res = rs.get(target_url)
+            soup = BeautifulSoup(res.text, 'html.parser')
+
+        except Exception as Errr:
+            raise Errr
+
+        if res.status_code == requests.codes.ok:
+
+            for index, data in enumerate(soup.select('div.main-content-container a')):
+                Link_List.append(data['href'])
+
+            for index, data in enumerate(soup.select('div.box--margin-top storycard-blurb text_greyish-brown-two')):
+                Title_List.append(data.string)
+
+            for index in range(len(Title_List)):
+                Total+=(Title_List[index])+'\n'
+                Total+=(Link_List[index])+'\n'
+
+        return Total
 
 # ----------------------------------------------------------------------------------------------
 
     # 得到Yahoo 頭條新聞
     def Yahoo_News(self):
-        res = requests.get('https://tw.yahoo.com/')
+        Total = ''
+        try:
+            res = requests.get('https://tw.yahoo.com/')
+        except Exception as Errr:
+            raise Errr
+
         if res.status_code == requests.codes.ok:
             soup = BeautifulSoup(res.text, 'html.parser')
             News = soup.find_all('a', class_='story-title')
-            Total = ''
             for new in News:
                 Total += ("標題：" + new.text)
                 Total += ("網址：" + new.get('href')) + '\n\n'
             return Total
 # ----------------------------------------------------------------------------------------------
     # 科技新報
-    def technews(self):
+    def Technews(self):
         target_url = 'https://technews.tw/'
         print('Start parsing movie ...')
         rs = requests.session()
-        res = rs.get(target_url, verify=False)
+        res = rs.get(target_url)
         res.encoding = 'utf-8'
         soup = BeautifulSoup(res.text, 'html.parser')
         content = ""
@@ -56,11 +76,11 @@ class NewsCrawler():
 # ----------------------------------------------------------------------------------------------
 
     # 泛科技
-    def panx(self):
+    def Panx(self):
         target_url = 'https://panx.asia/'
         print('Start parsing anx.asia hot....')
         rs = requests.session()
-        res = rs.get(target_url, verify=False)
+        res = rs.get(target_url)
         soup = BeautifulSoup(res.text, 'html.parser')
         content = ""
         for data in soup.select('div.container div.row div.desc_wrap h2 a'):

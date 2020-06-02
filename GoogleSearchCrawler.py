@@ -41,7 +41,6 @@ class GoogleSearchCrawler(threading.Thread):
             if(ele.text=='影片'):
                 continue
             print(ele.text)
-        print()
 
 # ----------------------------------------------------------------------------------------------
     #得到搜尋的連結

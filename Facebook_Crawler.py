@@ -228,5 +228,4 @@ class Facebook_Crawler:
             Continue_count += 1
             like = data.text
             content += like + '\n'
-
         return (content)

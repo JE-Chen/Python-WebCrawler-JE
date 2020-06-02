@@ -6,6 +6,7 @@ class Youtube_Crawler():
 
     def __init__(self,Have_Progress_Bar=True):
         self.Have_Progress_Bar=Have_Progress_Bar
+        self.Set_Search()
 
 # ----------------------------------------------------------------------------------------------
     #設置Url
@@ -68,6 +69,6 @@ class Youtube_Crawler():
                 print(img[0].get("data-thumb"))
             data = all_mv.select(".yt-lockup-meta-info")
             print(data[0].get_text())
-            print("-------------------")
+            print("-----------------------------------------------------------")
         return data[0].get_text()
 # ----------------------------------------------------------------------------------------------

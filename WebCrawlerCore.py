@@ -1,5 +1,4 @@
 import datetime
-import sys
 from EynyCrawler import EynyCrawler
 from Facebook_Crawler import Facebook_Crawler
 from Google_Image_Crawler import Google_Image_Crawler
@@ -10,6 +9,10 @@ from OilCrawler import OilCrawler
 from PTT_Crawler import PTT_Crawler
 from WeatherCrawler import WeatherCrawler
 from Youtube_Crawler import Youtube_Crawler
+from StockCrawler import StockCrawler
+from WikiCrawler import WikiCrawler
+from Rule34Crawler import Rule34Crawler
+from MemeCrawler import MemeCrawler
 
 class WebCrawlerCore():
 
@@ -25,9 +28,12 @@ class WebCrawlerCore():
             self.PTT_Crawler=PTT_Crawler()
             self.WeatherCrawler=WeatherCrawler()
             self.Youtube_Crawler=Youtube_Crawler()
+            self.StockCrawler=StockCrawler()
+            self.WikiCrawler=WikiCrawler()
+            self.Rule34Crawler=Rule34Crawler()
+            self.MemeCrawler=MemeCrawler()
         except Exception as Errr:
-            print(Errr)
-            sys.exit()
+            raise Errr
         print(datetime.datetime.now(),'WebCrawlerCore Ready',sep=' ')
 
 
