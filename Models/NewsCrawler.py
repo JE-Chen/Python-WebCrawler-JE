@@ -1,17 +1,19 @@
 import requests
 from bs4 import BeautifulSoup
+
+
 class NewsCrawler():
 
     def __init__(self):
         pass
 
-# ----------------------------------------------------------------------------------------------
+    # ----------------------------------------------------------------------------------------------
     # 蘋果新聞
     # Need to fix
     def Apple_news(self):
         Link_List = []
         Title_List = []
-        Total=''
+        Total = ''
 
         try:
 
@@ -32,12 +34,12 @@ class NewsCrawler():
                 Title_List.append(data.string)
 
             for index in range(len(Title_List)):
-                Total+=(Title_List[index])+'\n'
-                Total+=(Link_List[index])+'\n'
+                Total += (Title_List[index]) + '\n'
+                Total += (Link_List[index]) + '\n'
 
         return Total
 
-# ----------------------------------------------------------------------------------------------
+    # ----------------------------------------------------------------------------------------------
 
     # 得到Yahoo 頭條新聞
     def Yahoo_News(self):
@@ -54,7 +56,8 @@ class NewsCrawler():
                 Total += ("標題：" + new.text)
                 Total += ("網址：" + new.get('href')) + '\n\n'
             return Total
-# ----------------------------------------------------------------------------------------------
+
+    # ----------------------------------------------------------------------------------------------
     # 科技新報
     def Technews(self):
         target_url = 'https://technews.tw/'
@@ -73,7 +76,7 @@ class NewsCrawler():
             content += '{}\n{}\n\n'.format(title, link)
         return content
 
-# ----------------------------------------------------------------------------------------------
+    # ----------------------------------------------------------------------------------------------
 
     # 泛科技
     def Panx(self):
@@ -88,6 +91,5 @@ class NewsCrawler():
             link = data['href']
             content += '{}\n{}\n\n'.format(title, link)
         return content
-
 
 # ----------------------------------------------------------------------------------------------

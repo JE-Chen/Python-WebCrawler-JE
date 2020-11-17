@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 
+
 class MemeCrawler():
 
     def __init__(self):
@@ -34,8 +35,7 @@ class MemeCrawler():
                     Href_List.append(text)
 
             for index in range(len(Title_List)):
-                Total+=Title_List[index]+'\n'
+                Total += Title_List[index] + '\n'
                 Total += Href_List[index] + '\n'
-
 
         return Total

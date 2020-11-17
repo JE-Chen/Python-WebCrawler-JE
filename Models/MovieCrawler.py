@@ -1,11 +1,13 @@
 import requests
 from bs4 import BeautifulSoup
+
+
 class MovieCrawler():
 
     def __init__(self):
         pass
 
-# ----------------------------------------------------------------------------------------------
+    # ----------------------------------------------------------------------------------------------
     # atmovies
     def Movie(self):
         content = ""
@@ -19,16 +21,16 @@ class MovieCrawler():
             soup = BeautifulSoup(res.text, 'html.parser')
 
         except Exception as Errr:
-            raise  Errr
+            raise Errr
 
-        if res.status_code==200:
+        if res.status_code == 200:
 
-            count=0
+            count = 0
             for index, data in enumerate(soup.select('ul.filmListAll a')):
-                if(count%2!=0):
+                if (count % 2 != 0):
                     title = data.text.replace('\t', '').replace('\r', '')
                     link = "http://www.atmovies.com.tw" + data['href']
                     content += '{}\n{}\n'.format(title, link)
-                count+=1
+                count += 1
         return content
 # ----------------------------------------------------------------------------------------------

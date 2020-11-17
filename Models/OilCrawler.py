@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 
+
 class OilCrawler():
 
     # 油價
